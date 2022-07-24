@@ -11,21 +11,23 @@
                 if (hole.classList.contains('hole_has-mole')) {
                     counterHit += 1;
                     if (counterHit === 10) {
-                        alert("Вы победили");
-                        counterHit = 0;
-                        counterMiss = 0;
+                        endGame("Вы победили");
                     }
                 } else {
                     counterMiss += 1;
                     if (counterMiss === 5) {
-                        alert("Вы проиграли");
-                        counterHit = 0;
-                        counterMiss = 0;
+                        endGame("Вы проиграли");
                     }
                 }
                 deadMole.textContent = counterHit;
                 lostMole.textContent = counterMiss;
             }
+        }
+        
+        function endGame(message) {
+            alert(message);
+            counterHit = 0;
+            counterMiss = 0;
         }
     }
 
