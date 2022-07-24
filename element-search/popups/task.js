@@ -7,7 +7,6 @@
 
     for (let btn of closeBtn) {
         btn.onclick = function() {
-            console.log('click')
             modalMain.classList.remove('modal_active');
             document.querySelector('#modal_success').classList.remove('modal_active');
         }
