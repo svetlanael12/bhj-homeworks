@@ -1,58 +1,40 @@
 (() => {
-    const arrayDots = document.querySelectorAll('.slider__dot');
     const images = document.querySelectorAll('.slider__item');
+    const arrayDots = document.querySelectorAll('.slider__dot');
 
     const nextBtn = document.querySelector('.slider__arrow_next');
     const prevBtn = document.querySelector('.slider__arrow_prev');
 
-    let active = 0;
-
-    images[active].classList.add('slider__item_active');
-    arrayDots[active].classList.add('slider__dot_active');
-
-    nextBtn.onclick = function () {
-        arrayDots[active].classList.remove('slider__dot_active');
-        images[active].classList.remove('slider__item_active');
-
-        active++;
-
-        if (active > images.length - 1) {
-            for (let img of images) {
-                img.classList.remove('slider__item_active');
-            }
-            active = 0;
-        }
-
-        images[active].classList.add('slider__item_active');
-        arrayDots[active].classList.add('slider__dot_active');
+    nextBtn.onclick = function() {
+        slider(Array.from(images).findIndex((img) => img.classList.contains('slider__item_active')) + 1);
     }
 
-    prevBtn.onclick = function () {
-        arrayDots[active].classList.remove('slider__dot_active');
-        images[active].classList.remove('slider__item_active');
-
-        active--;
-
-        if (active < 0) {
-            for (let img of images) {
-                img.classList.add('slider__item_active');
-            }
-            active = images.length - 1;
-        }
-
-        arrayDots[active].classList.add('slider__dot_active');
-        images[active].classList.add('slider__item_active');
+    prevBtn.onclick = function() {
+        slider(Array.from(images).findIndex((img) => img.classList.contains('slider__item_active')) - 1);
     }
 
     for (let dot of arrayDots) {
-        dot.onclick = function () {
-            arrayDots[active].classList.remove('slider__dot_active');
-            images[active].classList.remove('slider__item_active');
+                dot.onclick = function () {
+                    slider(Array.from(arrayDots).indexOf(dot))          
+                }
+            }
 
-            active = Array.from(arrayDots).indexOf(dot);
+    function slider(active) {
+        let newSlide = active;
+        let activeSlide = Array.from(images).findIndex((img) => img.classList.contains('slider__item_active'));
+        
+        arrayDots[activeSlide].classList.remove('slider__dot_active');
+        images[activeSlide].classList.remove('slider__item_active');
 
-            images[active].classList.add('slider__item_active');
-            arrayDots[active].classList.add('slider__dot_active');
+        if (newSlide < 0) {
+            newSlide = images.length - 1;
         }
+
+        if (newSlide > images.length - 1) {
+            newSlide = 0;
+        }
+
+        images[newSlide].classList.add('slider__item_active');
+        arrayDots[newSlide].classList.add('slider__dot_active');
     }
 })();
