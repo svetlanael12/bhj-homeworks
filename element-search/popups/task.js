@@ -16,5 +16,3 @@
         document.querySelector('#modal_success').classList.add('modal_active');  
     }
 })();
-
-
