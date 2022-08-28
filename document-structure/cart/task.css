@@ -9,14 +9,30 @@ body {
 
 .cart__product {
   position: relative;
+
+  margin-right: 30px;
 }
+
+.cart__product-delete,
 .cart__product-count {
   position: absolute;
-  top: 0;
-  right: 0;
   border: 2px solid green;
   border-radius: 50%;
+  
+}
+
+.cart__product-count {
+  top: 0;
+  right: 0;
   padding: 2px 5px;
+}
+
+.cart__product-delete {
+  top: 0;
+  left: -10px;
+  padding: 2px 7px;
+
+  cursor: pointer;
 }
 
 .cart__product-image {
