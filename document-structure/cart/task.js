@@ -93,7 +93,7 @@
     })
 
     basket.addEventListener('click', removeProductBasket = (e) => {
-        Array.from(document.querySelectorAll('.cart__product')).forEach((card) => {
+        document.querySelectorAll('.cart__product').forEach((card) => {
             if (e.target === card.querySelector('.cart__product-delete')) {
                 productsBasket.forEach((elem, ind) => {
                     e.target.closest('.cart__product').remove();
